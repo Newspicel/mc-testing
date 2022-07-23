@@ -13,11 +13,8 @@ jobs:
           EULA: TRUE
           ONLINE_MODE: FALSE
           MOTD: "Minecraft Server Tests"
-        options: >-
-          --health-cmd "mc healthy"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+          MAX_PLAYERS: 1
+          TYPE: PAPER
 
     steps:
       - name: Check out repository code
