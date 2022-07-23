@@ -16,6 +16,7 @@ jobs:
           MAX_PLAYERS: 1
           TYPE: PAPER
           VERSION: 1.18
+        options: --name mcserver
         volumes:
           - data-mc-server:/data
 
@@ -23,6 +24,11 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
+
+      - name: Check Docker
+        uses: docker://docker
+        with: 
+          args: docker exec mcserver cat .data/server.properties
 
       - name: Install Dependencies
         run: | 
@@ -34,7 +40,7 @@ jobs:
           cd mc-client-bot-tests
           yarn run test
         env:
-          HOST: mc-server
+          HOST: mcserver
           PORT: 25565
 
 
