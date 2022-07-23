@@ -2,7 +2,7 @@ name: Minecraft Server Tests
 on: [push]
 
 jobs:
-  minecraft-client-test:
+  minecraft-server-test:
     runs-on: ubuntu-latest
     container: node:18-alpine
 
@@ -16,6 +16,8 @@ jobs:
           MAX_PLAYERS: 1
           TYPE: PAPER
           VERSION: 1.18
+        options: -v ${{ github.workspace }}/data-mc-server:/data --name mcserver
+
 
     steps:
       - name: Check out repository code
