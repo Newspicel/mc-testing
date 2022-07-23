@@ -15,6 +15,7 @@ jobs:
           MOTD: "Minecraft Server Tests"
           MAX_PLAYERS: 1
           TYPE: PAPER
+          VERSION: 1.18
 
     steps:
       - name: Check out repository code
