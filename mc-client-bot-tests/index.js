@@ -1,5 +1,10 @@
 const mineflayer = require('mineflayer')
 
+function sleep(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
 
 const bot = mineflayer.createBot({
   host: process.env.HOST,
@@ -12,8 +17,10 @@ console.log('Bot created')
 bot.on('spawn', () => {
   bot.chat('Hello, world!')
   console.log('spawn')
-})
 
+  await sleep(10000)
+  bot.quit()
+})
 
 
 bot.on('chat', (username, message) => {
