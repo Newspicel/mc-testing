@@ -18,7 +18,6 @@ jobs:
           VERSION: 1.18
         options: -v ${{ github.workspace }}/data-mc-server:/data --name mc-server
 
-
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
@@ -27,16 +26,6 @@ jobs:
         uses: docker://docker
         with:
           args: docker restart mc-server
-
-      - name: Show options
-        uses: docker://docker
-        with:
-          args: docker exec mc-server mc-send-to-console difficulty
-
-      - name: LS MC-Server Data
-        uses: docker://docker
-        with:
-          args: docker exec mc-server cat /data/server.properties
 
       - name: Install Dependencies
         run: | 
