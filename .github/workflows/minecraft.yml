@@ -37,7 +37,7 @@ jobs:
           cd mc-client-bot-tests
           yarn run test
         env:
-          HOST: mcserver
+          HOST: mc-server
           PORT: 25565
 
 
