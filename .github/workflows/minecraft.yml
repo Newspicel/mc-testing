@@ -28,7 +28,7 @@ jobs:
       - name: Check Docker
         uses: docker://docker
         with: 
-          args: docker exec mcserver cat .data/server.properties
+          args: docker exec mcserver cat /data/server.properties
 
       - name: Install Dependencies
         run: | 
