@@ -1,0 +1,40 @@
+name: Minecraft Server Tests
+on: [push]
+
+jobs:
+  minecraft-client-test:
+    runs-on: ubuntu-latest
+    container: node:18-alpine
+
+    services:
+      mcserver:
+        image: itzg/minecraft-server
+        env: 
+          EULA: TRUE
+          ONLINE_MODE: FALSE
+          MOTD: "Minecraft Server Tests"
+        options: >-
+          --health-cmd "mc healthy"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: | 
+          cd mc-client-bot-tests 
+          yarn
+
+      - name: Run Tests
+        run: | 
+          cd mc-client-bot-tests
+          yarn run test
+        env:
+          HOST: mcserver
+          PORT: 25565
+
+
+
