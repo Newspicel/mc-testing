@@ -31,7 +31,7 @@ jobs:
       - name: LS MC-Server Data
         uses: docker://docker
         with:
-          args: docker exec ls -la /data
+          args: docker exec ls -la
 
       - name: Install Dependencies
         run: | 
