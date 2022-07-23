@@ -1,10 +1,7 @@
 const mineflayer = require('mineflayer')
 
-function sleep(ms) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
-}
+const sleep = (waitTimeInMs) => new Promise(resolve => setTimeout(resolve, waitTimeInMs));
+
 
 const bot = mineflayer.createBot({
   host: process.env.HOST,
@@ -18,8 +15,12 @@ bot.on('spawn', () => {
   bot.chat('Hello, world!')
   console.log('spawn')
 
-  await sleep(10000)
-  bot.quit()
+  sleep(10000).then(() => {
+    bot.chat('Goodbye, world!')
+    console.log('sleep')
+    bot.quit()
+    console.log('quit')
+  })
 })
 
 
