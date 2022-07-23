@@ -16,7 +16,7 @@ jobs:
           MAX_PLAYERS: 1
           TYPE: PAPER
           VERSION: 1.18
-        options: -v ${{ github.workspace }}/data-mc-server:/data -name mc-server
+        options: -v ${{ github.workspace }}/data-mc-server:/data --name mc-server
 
 
     steps:
@@ -28,7 +28,7 @@ jobs:
         with:
           args: docker restart mc-server
 
-      - name: Restart MC-Server
+      - name: LS MC-Server Data
         uses: docker://docker
         with:
           args: docker exec ls -la /data
