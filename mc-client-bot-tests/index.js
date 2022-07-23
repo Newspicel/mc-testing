@@ -14,6 +14,8 @@ console.log('Bot created')
 bot.on('spawn', () => {
   bot.chat('Hello, world!')
   console.log('spawn')
+  console.log(bot.entity.position)
+  console.log(bot.game.gameMode)
 
   sleep(10000).then(() => {
     bot.chat('Goodbye, world!')
@@ -25,9 +27,7 @@ bot.on('spawn', () => {
 
 
 bot.on('chat', (username, message) => {
-  if (username === bot.username) return
-  bot.chat(message)
-  
+  console.log(`${username}: ${message}`)
 })
 
 // Log errors and kick reasons:
