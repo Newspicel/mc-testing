@@ -23,10 +23,10 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
 
-      - name: Restart MC-Server
+      - name: Show options
         uses: docker://docker
         with:
-          args: docker restart mc-server
+          args: docker exec mc-server mc-send-to-console difficulty
 
       - name: LS MC-Server Data
         uses: docker://docker
