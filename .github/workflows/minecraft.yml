@@ -16,16 +16,13 @@ jobs:
           MAX_PLAYERS: 1
           TYPE: PAPER
           VERSION: 1.18
-        options: -v ${{ github.workspace }}/data-mc-server:/data --name mc-server
+        volumes:
+          - data-mc-server:/data
+
 
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-
-      - name: Restart Server
-        uses: docker://docker
-        with:
-          args: docker restart mc-server
 
       - name: Install Dependencies
         run: | 
