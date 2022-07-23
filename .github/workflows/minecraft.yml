@@ -23,6 +23,11 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
 
+      - name: Restart Server
+        uses: docker://docker
+        with:
+          args: docker restart mc-server
+
       - name: Show options
         uses: docker://docker
         with:
