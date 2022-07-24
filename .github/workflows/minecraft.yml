@@ -33,6 +33,13 @@ jobs:
           cd mc-client-bot-tests 
           yarn
 
+      - name: Wait unit Docker Container is health
+        run: |
+          while [ "$(docker inspect -f '{{.State.Health.Status}}' mc-server)" != "healthy" ]; do
+            sleep 5
+          done
+          echo "Server is healthy"
+
       - name: Run Tests
         run: | 
           cd mc-client-bot-tests
