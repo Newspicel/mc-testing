@@ -36,7 +36,12 @@ jobs:
       - name: Wait unit Docker Container is health
         uses: docker://docker
         with:
-          args: docker inspect mc-server | jq -r '.[0].State.Health.Status'
+          args: docker container ls 
+
+      - name: Wait unit Docker Container is health
+        uses: docker://docker
+        with:
+          args: docker network ls 
 
       - name: Run Tests
         run: | 
