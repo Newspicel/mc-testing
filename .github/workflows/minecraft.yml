@@ -33,6 +33,9 @@ jobs:
           cd mc-client-bot-tests 
           yarn
 
+      - name: Wait for Server to Start
+        run: docker container ls -a | grep mc-server
+          
       - name: Wait unit Docker Container is health
         uses: docker://docker
         with:
