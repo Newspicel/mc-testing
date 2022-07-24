@@ -28,6 +28,16 @@ jobs:
       - name: Check Docker
         uses: docker://docker
         with: 
+          args: docker exec mcserver ls -la
+
+      - name: Check Docker
+        uses: docker://docker
+        with: 
+          args: docker exec mcserver ls -la /data
+
+      - name: Check Docker
+        uses: docker://docker
+        with: 
           args: docker exec mcserver cat /data/server.properties
 
       - name: Install Dependencies
