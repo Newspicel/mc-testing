@@ -16,29 +16,17 @@ jobs:
           MAX_PLAYERS: 1
           TYPE: PAPER
           VERSION: 1.18
-        options: --name mcserver
-        volumes:
-          - data-mc-server:/data
+        options: -v ${{ github.workspace }}/data-mc-server:/data --name mc-server
 
 
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
 
-      - name: Check Docker
+      - name: Restart Server
         uses: docker://docker
-        with: 
-          args: docker exec mcserver ls -la
-
-      - name: Check Docker
-        uses: docker://docker
-        with: 
-          args: docker exec mcserver ls -la /data
-
-      - name: Check Docker
-        uses: docker://docker
-        with: 
-          args: docker exec mcserver cat /data/server.properties
+        with:
+          args: docker restart mc-server
 
       - name: Install Dependencies
         run: | 
@@ -50,7 +38,7 @@ jobs:
           cd mc-client-bot-tests
           yarn run test
         env:
-          HOST: mcserver
+          HOST: mc-server
           PORT: 25565
 
 
