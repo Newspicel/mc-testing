@@ -36,10 +36,7 @@ jobs:
       - name: Wait unit Docker Container is health
         uses: docker://docker
         with:
-         args: while [ "$(docker inspect -f '{{.State.Health.Status}}' mc-server)" != "healthy" ]; do
-            sleep 5
-          done
-          echo "Server is healthy"
+          args: docker wait mc-server
 
       - name: Run Tests
         run: | 
