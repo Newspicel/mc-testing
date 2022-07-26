@@ -1,4 +1,5 @@
 const mineflayer = require('mineflayer')
+const blockunderbot = require('./tests/block-under-bot.js')
 
 const sleep = (waitTimeInMs) => new Promise(resolve => setTimeout(resolve, waitTimeInMs));
 
@@ -13,16 +14,15 @@ console.log('Bot created')
 
 bot.on('spawn', () => {
   bot.chat('Hello, world!')
-  console.log('spawn')
-  console.log(bot.entity.position)
-  console.log(bot.game.gameMode)
+  console.log('Bot spawned')
+  
+  console.log('Running tests')
+  blockunderbot.run(bot)
+  console.log('Tests finished')
 
-  sleep(10000).then(() => {
-    bot.chat('Goodbye, world!')
-    console.log('sleep')
-    bot.quit()
-    console.log('quit')
-  })
+
+  bot.quit()
+  console.log('Bot quieted')
 })
 
 
