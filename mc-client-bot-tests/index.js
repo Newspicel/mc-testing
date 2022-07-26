@@ -1,10 +1,10 @@
-const mineflayer = require('mineflayer')
-const blockunderbot = require('./tests/block-under-bot.js')
+import { createBot } from 'mineflayer';
+import blockunderbot from './tests/block-under-bot.js';
 
 const sleep = (waitTimeInMs) => new Promise(resolve => setTimeout(resolve, waitTimeInMs));
 
 
-const bot = mineflayer.createBot({
+const bot = createBot({
   host: process.env.HOST,
   port: process.env.PORT,
   username: 'Bot', // minecraft username
@@ -15,7 +15,7 @@ console.log('Bot created')
 bot.on('spawn', () => {
   bot.chat('Hello, world!')
   console.log('Bot spawned')
-  
+
   console.log('Running tests')
   blockunderbot.run(bot)
   console.log('Tests finished')
